@@ -327,3 +327,23 @@ function b64url(bytes: Uint8Array) {
   for (const b of bytes) s += String.fromCharCode(b);
   return btoa(s).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
 }
+
+function formatList(label: string, events: any[]) {
+  if (!events || events.length === 0) return `${label} 일정 없습니다.`;
+
+  const lines = events.slice(0, 10).map((e: any) => `- ${formatOne(e)}`);
+  return `${label} 일정 ${events.length}건:\n${lines.join("\n")}`;
+}
+
+function formatOne(e: any) {
+  const title = e?.summary ?? "(제목없음)";
+
+  // 종일 이벤트(date-only)
+  if (e?.start?.date) return `${title} (종일)`;
+
+  const start = e?.start?.dateTime ?? "";
+  if (!start) return `${title}`;
+
+  return `${title} (${prettyKST(start)})`;
+}
+
