@@ -38,7 +38,9 @@ export default {
       }
 
       const token = await getAccessToken(env);
+      console.log("RAW_TEXT:", text);
       const intent = parseIntent(text);
+      console.log("INTENT:", intent);
 
       let reply: string;
 
