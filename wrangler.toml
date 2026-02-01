@@ -1,3 +1,7 @@
 name = "jarvis-worker"
 main = "src/index.ts"
 compatibility_date = "2025-01-01"
+
+[vars]
+GCAL_SA_EMAIL = "javis-bmk@javis-486014.iam.gserviceaccount.com"
+GCAL_CALENDAR_ID = "296075d05c7500461ed7a54ad2e077b3eda8e98d63d8abeaa840224885e0b24d@group.calendar.google.com"
