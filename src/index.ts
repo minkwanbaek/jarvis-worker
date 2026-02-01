@@ -229,7 +229,10 @@ async function getAccessToken(env: Env): Promise<string> {
     body: form.toString()
   });
 
-  if (!res.ok) throw new Error("token error");
+  if (!res.ok) {
+  const errText = await res.text().catch(() => "");
+  throw new Error(`token error: ${res.status} ${errText}`);
+  }
   const data = await res.json();
   return data.access_token;
 }
